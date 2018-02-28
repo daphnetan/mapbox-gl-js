@@ -2,12 +2,12 @@ import { test } from 'mapbox-gl-js-test';
 import ImageSource from '../../../src/source/image_source';
 import { Evented } from '../../../src/util/evented';
 import Transform from '../../../src/geo/transform';
-import util from '../../../src/util/util';
+import { extend } from '../../../src/util/util';
 import ajax from '../../../src/util/ajax';
 import browser from '../../../src/util/browser';
 
 function createSource(options) {
-    options = util.extend({
+    options = extend({
         coordinates: [[0, 0], [1, 0], [1, 1], [0, 1]]
     }, options);
 

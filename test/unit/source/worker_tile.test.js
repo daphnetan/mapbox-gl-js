@@ -3,7 +3,7 @@ import WorkerTile from '../../../src/source/worker_tile';
 import Wrapper from '../../../src/source/geojson_wrapper';
 import { OverscaledTileID } from '../../../src/source/tile_id';
 import StyleLayerIndex from '../../../src/style/style_layer_index';
-import util from '../../../src/util/util';
+import '../../../src/util/util';
 
 function createWorkerTile() {
     return new WorkerTile({

@@ -4,7 +4,7 @@ import Style from '../../../src/style/style';
 import SourceCache from '../../../src/source/source_cache';
 import StyleLayer from '../../../src/style/style_layer';
 import Transform from '../../../src/geo/transform';
-import util from '../../../src/util/util';
+import { extend } from '../../../src/util/util';
 import { Event, Evented } from '../../../src/util/evented';
 import window from '../../../src/util/window';
 import rtlTextPlugin from '../../../src/source/rtl_text_plugin';
@@ -12,7 +12,7 @@ import ajax from '../../../src/util/ajax';
 import browser from '../../../src/util/browser';
 
 function createStyleJSON(properties) {
-    return util.extend({
+    return extend({
         "version": 8,
         "sources": {},
         "layers": []
@@ -248,7 +248,7 @@ test('Style#loadJSON', (t) => {
             t.end();
         });
 
-        style.loadJSON(util.extend(createStyleJSON(), {
+        style.loadJSON(extend(createStyleJSON(), {
             "sources": {
                 "mapbox": {
                     "type": "vector",
@@ -298,7 +298,7 @@ test('Style#loadJSON', (t) => {
             t.end();
         });
 
-        style.loadJSON(util.extend(createStyleJSON(), {
+        style.loadJSON(extend(createStyleJSON(), {
             "sprite": "http://example.com/sprites/bright-v8"
         }));
     });
@@ -875,7 +875,7 @@ test('Style#addLayer', (t) => {
 
     t.test('reloads source', (t) => {
         const style = new Style(new StubMap());
-        style.loadJSON(util.extend(createStyleJSON(), {
+        style.loadJSON(extend(createStyleJSON(), {
             "sources": {
                 "mapbox": {
                     "type": "vector",
@@ -902,7 +902,7 @@ test('Style#addLayer', (t) => {
 
     t.test('#3895 reloads source (instead of clearing) if adding this layer with the same type, immediately after removing it', (t) => {
         const style = new Style(new StubMap());
-        style.loadJSON(util.extend(createStyleJSON(), {
+        style.loadJSON(extend(createStyleJSON(), {
             "sources": {
                 "mapbox": {
                     "type": "vector",
@@ -939,7 +939,7 @@ test('Style#addLayer', (t) => {
 
     t.test('clears source (instead of reloading) if adding this layer with a different type, immediately after removing it', (t) => {
         const style = new Style(new StubMap());
-        style.loadJSON(util.extend(createStyleJSON(), {
+        style.loadJSON(extend(createStyleJSON(), {
             "sources": {
                 "mapbox": {
                     "type": "vector",
@@ -1066,7 +1066,7 @@ test('Style#addLayer', (t) => {
 
     t.test('fires an error on non-existant source layer', (t) => {
         const style = new Style(new StubMap());
-        style.loadJSON(util.extend(createStyleJSON(), {
+        style.loadJSON(extend(createStyleJSON(), {
             sources: {
                 dummy: {
                     type: 'geojson',
@@ -1253,7 +1253,7 @@ test('Style#moveLayer', (t) => {
 test('Style#setPaintProperty', (t) => {
     t.test('#4738 postpones source reload until layers have been broadcast to workers', (t) => {
         const style = new Style(new StubMap());
-        style.loadJSON(util.extend(createStyleJSON(), {
+        style.loadJSON(extend(createStyleJSON(), {
             "sources": {
                 "geojson": {
                     "type": "geojson",
